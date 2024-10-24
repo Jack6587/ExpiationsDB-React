@@ -1,5 +1,4 @@
 ﻿import React, { useState } from 'react';
-import SHA256 from 'crypto-js/sha256';
 
 const Register = ({ }) => {
 
@@ -14,7 +13,6 @@ const Register = ({ }) => {
                     <input type="text" name="password" className="form-control" placeholder="Password" />
                 </div>
                 <div className="col-3 text-left">
-                    <button type="submit">Log in</button>
                     <button type="submit">Register</button>
                 </div>
             </form>

@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
 import SHA256 from 'crypto-js/sha256';
-import Login from './components/Login';
+import { Link, Outlet } from 'react-router-dom';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
             <h2 className="text-center">App</h2>
           </div>
           <div className="row justify-content-center">
-            <Login />
+            <Outlet />
           </div>
       </div>
   );
