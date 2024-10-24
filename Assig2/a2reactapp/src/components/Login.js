@@ -48,7 +48,6 @@ const Login = ({ }) => {
                 </div>
                 <div className="col-3 text-left">
                     <button type="submit" onClick={loginQuery}>Log in</button>
-                    <button type="submit">Register</button>
                     <Link className="nav-link" to="/Register">Register</Link>
                 </div>
             </form>

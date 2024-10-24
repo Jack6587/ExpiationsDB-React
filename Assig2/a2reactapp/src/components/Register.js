@@ -10,6 +10,9 @@ const Register = ({ }) => {
 
     function onSubmit(e) {
         e.preventDefault();
+        console.log(userName);
+        console.log(pwd);
+        console.log(SHA256(pwd).toString());
 
         if (!userName || !pwd) {
             alert("Username and Password are required!");
@@ -23,7 +26,7 @@ const Register = ({ }) => {
                 if (data) {
                     navigate("/Login");
                 } else {
-                    alert("Login failed");
+                    alert("Register failed");
                 }
             })
             .catch(err => {
@@ -32,10 +35,10 @@ const Register = ({ }) => {
     }
 
     function registerQuery(evt) {
-        const login = document.querySelector('[name="userName"]').value;
+        const userName = document.querySelector('[name="userName"]').value;
         const pwd = document.querySelector('[name="password"]').value;
-        alert("Login: " + login);
-        setUsername(login);
+        alert("Username: " + userName);
+        setUsername(userName);
         alert("Password: " + pwd);
         setPwd(pwd);
     }
