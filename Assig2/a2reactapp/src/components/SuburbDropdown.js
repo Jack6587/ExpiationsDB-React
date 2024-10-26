@@ -11,5 +11,18 @@ function SuburbDropdown() {
             .catch(err => {
                 console.log(err);
             });
-    }, [])
+    }, []);
+
+    return (
+        <select className="form-control">
+            <option value="">Select a suburb</option>
+            {suburbs.map((suburb) => (
+                <option key={suburb} value={suburb}>
+                    {suburb}
+                </option>
+            )) }
+        </select>
+    )
 }
+
+export default SuburbDropdown;

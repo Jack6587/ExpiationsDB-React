@@ -11,6 +11,11 @@ const Login = ({ }) => {
     
     function onSubmit(e) {
         e.preventDefault();
+
+        if (!userName || !pwd) {
+            alert("Please enter both username and password.");
+            return;
+        }
         
         fetch(`${url}?userName=${userName}&passwordHash=${SHA256(pwd).toString()}`)
             .then(response => response.json())
