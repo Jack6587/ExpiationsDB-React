@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import { Link } from 'react-router-dom';
 import SuburbDropdown from './SuburbDropdown';
 
 const Dashboard = () => {
@@ -7,6 +8,10 @@ const Dashboard = () => {
             <h2>Dashboard</h2>
             <p>Search below...</p>
             <SuburbDropdown />
+            <div>
+                <Link className="nav-link" to="/Report">Report</Link>
+            </div>
+            
         </div>
     )
 }

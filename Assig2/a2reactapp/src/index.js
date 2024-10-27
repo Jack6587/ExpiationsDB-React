@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import Login from "./components/Login"
 import Register from "./components/Register"
 import Dashboard from "./components/Dashboard"
+import Report from "./components/Report"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,6 +18,7 @@ root.render(
                     <Route path="Login" element={<Login />} />
                     <Route path="Register" element={<Register />} />
                     <Route path="Dashboard" element={<Dashboard />} />
+                    <Route path="Report" element={<Report />} />
                     <Route path="" element={<Login />} />
                     <Route path="*" element={<Login />} />
                 </Route>
