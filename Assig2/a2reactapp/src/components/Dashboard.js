@@ -14,7 +14,7 @@ const Dashboard = () => {
             <p>Search below...</p>
             <SuburbDropdown />
             <div>
-                <Link className="nav-link" to="/Report">Report</Link>
+                <Link className="nav-link" to="/Report">Generate Report</Link>
             </div>
             
         </div>
