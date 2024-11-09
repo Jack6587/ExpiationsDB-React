@@ -11,7 +11,7 @@ function App() {
             <h2 className="text-center">App</h2>
           </div>
           <div className="row justify-content-center">
-            <Outlet />
+              <Outlet />
           </div>
       </div>
   );

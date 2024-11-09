@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import SuburbDropdown from './SuburbDropdown';
+import DescriptionSearch from './DescriptionSearch';
 import './style/Navbar.css';
 
 const Dashboard = () => {
@@ -13,8 +14,9 @@ const Dashboard = () => {
             <h2>Dashboard</h2>
             <p>Search below...</p>
             <SuburbDropdown />
+            <DescriptionSearch />
             <div>
-                <Link className="nav-link" to="/Report">Report</Link>
+                <Link className="nav-link" to="/Report">Generate Report</Link>
             </div>
             
         </div>
