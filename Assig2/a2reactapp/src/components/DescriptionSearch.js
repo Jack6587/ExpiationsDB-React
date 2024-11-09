@@ -37,7 +37,7 @@ function DescriptionSearch() {
                     <input type="text" name="searchText" className="form-control" placeholder="Search by description" />
                 </div>
                 <div className="col-3 text-left">
-                    <button type="submit" value={searchQuery}>Search</button>
+                    <button type="submit" class="btn btn-outline-primary" value={searchQuery}>Search</button>
                 </div>
             </form>
         </div>
