@@ -1,14 +1,14 @@
 ﻿import { useEffect, useState } from 'react';
+import Card from './Card';
 
-function DescriptionSearch({ searchQuery , offenceCodesOnly }) {
+function DescriptionSearch({ searchQuery , offenceCodesOnly, onSearchChange }) {
     const [data, setData] = useState([]);
 
     const url = `http://localhost:5147/api/Get_SearchOffencesByDescription`;
 
     useEffect(() => {
         if (!searchQuery) return;
-
-        console.log("useEffect")
+        
         fetch(`${url}?searchTerm=${searchQuery}&offenceCodesOnly=${offenceCodesOnly}`)
             .then(response => response.json())
             .then(data => setData(data))
@@ -17,18 +17,11 @@ function DescriptionSearch({ searchQuery , offenceCodesOnly }) {
             });
     }, [searchQuery, offenceCodesOnly]);
 
-    function searchQuery(evt) {
-        const value = document.querySelector('[name="searchText"]').value;
-        setQuery(value);
-    }
-
     function onSubmit(e) {
         e.preventDefault();
 
-        const form = e.target;
-        const formData = new FormData(form);
-        console.log("FormData: " + formData.get("searchText"))
-        setQuery(formData.get("searchText"))
+        const query = e.target.searchText.value;
+        onSearchChange(query)
     }
 
     return (
