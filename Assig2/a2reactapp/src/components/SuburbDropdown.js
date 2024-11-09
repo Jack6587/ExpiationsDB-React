@@ -1,8 +1,7 @@
 ﻿import React, { useState, useEffect } from 'react'
 
-function SuburbDropdown() {
+function SuburbDropdown({ selectedSuburb, onSuburbChange }) {
     const [suburbs, setSuburbs] = useState([]);
-    const [selectedSuburb, setSelectedSuburb] = useState('');
 
     useEffect(() => {
         console.log("useEffect");
@@ -15,7 +14,7 @@ function SuburbDropdown() {
     }, []);
 
     function onSelect(event) {
-        setSelectedSuburb(event.target.value);
+        onSuburbChange(event.target.value);
     }
 
     return (

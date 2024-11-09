@@ -1,20 +1,21 @@
 ﻿import { useEffect, useState } from 'react';
 
-function DescriptionSearch() {
-    const [cardData, setState] = useState([]);
-    const [query, setQuery] = useState([]);
-    const [boolean, setBoolean] = useState(false);
-    let url = `http://localhost:5147/api/Get_SearchOffencesByDescription`
+function DescriptionSearch({ searchQuery , offenceCodesOnly }) {
+    const [data, setData] = useState([]);
+
+    const url = `http://localhost:5147/api/Get_SearchOffencesByDescription`;
 
     useEffect(() => {
+        if (!searchQuery) return;
+
         console.log("useEffect")
-        fetch(`${url}?${query}&offenceCodesOnly=${boolean}`)
+        fetch(`${url}?searchTerm=${searchQuery}&offenceCodesOnly=${offenceCodesOnly}`)
             .then(response => response.json())
-            .then(data => setState(data))
+            .then(data => setData(data))
             .catch(err => {
                 console.log(err);
             });
-    }, [query]);
+    }, [searchQuery, offenceCodesOnly]);
 
     function searchQuery(evt) {
         const value = document.querySelector('[name="searchText"]').value;
