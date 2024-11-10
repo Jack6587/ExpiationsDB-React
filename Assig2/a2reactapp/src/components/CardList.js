@@ -5,12 +5,17 @@ const CardList = ({ searchQuery, offenceCodesOnly, selectedSuburb }) => {
     const [cardData, setCardData] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5147/api/Get_SearchOffencesByDescription?searchTerm=${searchQuery}&offenceCodesOnly=${offenceCodesOnly}`)
-            .then(response => response.json())
-            .then(data => setCardData(data))
-            .catch(err => {
-                console.log(err);
-            });
+        if (searchQuery) {
+            fetch(`http://localhost:5147/api/Get_SearchOffencesByDescription?searchTerm=${searchQuery}&offenceCodesOnly=${offenceCodesOnly}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    setCardData(data)
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        }
     }, [searchQuery, offenceCodesOnly, selectedSuburb])
 
     return (
@@ -18,6 +23,7 @@ const CardList = ({ searchQuery, offenceCodesOnly, selectedSuburb }) => {
             {cardData.map((obj) => (
                 <Card
                     key={obj.offenceCode}
+                    offenceCode={obj.offenceCode}
                     description={obj.description}
                     expiationFee={obj.expiationFee}
                     totalFee={obj.totalFee}

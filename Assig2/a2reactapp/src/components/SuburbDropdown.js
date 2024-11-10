@@ -4,7 +4,6 @@ function SuburbDropdown({ selectedSuburb, onSuburbChange }) {
     const [suburbs, setSuburbs] = useState([]);
 
     useEffect(() => {
-        console.log("useEffect");
         fetch(`http://localhost:5147/api/Get_ListCameraSuburbs`)
             .then(response => response.json())
             .then(data => setSuburbs(data))
