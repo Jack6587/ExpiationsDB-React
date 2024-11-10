@@ -1,7 +1,7 @@
 ﻿import { useEffect, useState } from 'react'
 import Card from './Card'
 
-const CardList = ({ searchQuery, offenceCodesOnly }) => {
+const CardList = ({ searchQuery, offenceCodesOnly, selectedSuburb }) => {
     const [cardData, setCardData] = useState([]);
 
     useEffect(() => {
@@ -11,17 +11,15 @@ const CardList = ({ searchQuery, offenceCodesOnly }) => {
             .catch(err => {
                 console.log(err);
             });
-    }, [searchQuery, offenceCodesOnly])
+    }, [searchQuery, offenceCodesOnly, selectedSuburb])
 
     return (
         <div className="row">
             {cardData.map((obj) => (
                 <Card
-                    offenceCode={obj.offenceCode}
+                    key={obj.offenceCode}
                     description={obj.description}
                     expiationFee={obj.expiationFee}
-                    adultLevy={obj.adultLevy}
-                    corporateFee={obj.corporateFee}
                     totalFee={obj.totalFee}
                     demeritPoints={obj.demeritPoints}
                     sectionID={obj.sectionID}
