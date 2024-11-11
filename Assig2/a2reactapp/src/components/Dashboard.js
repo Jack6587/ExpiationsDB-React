@@ -16,7 +16,6 @@ const Dashboard = () => {
         setSelectedSuburb(suburb);
     }
 
-
     function handleSearchChange(query) {
         setSearchQuery(query);
     }
@@ -31,7 +30,7 @@ const Dashboard = () => {
             <h2>Dashboard</h2>
             <SuburbDropdown searchQuery={searchQuery} onSuburbChange={handleSuburbChange} selectedSuburb={selectedSuburb} />
             <DescriptionSearch onSearchChange={handleSearchChange} searchQuery={searchQuery} onSearchSubmit={handleSearchSubmit} offenceCodesOnly={offenceCodesOnly} />
-            <LocationSelect onSearchChange={handleSearchChange} searchQuery={searchQuery} onSearchSubmit={handleSearchSubmit} />
+            <LocationSelect suburb={selectedSuburb} onLocationChange={setSelectedLocationId} onSearchChange={handleSearchChange} searchQuery={searchQuery} onSearchSubmit={handleSearchSubmit} />
             <CardList searchQuery={searchQuery} selectedLocationId={selectedLocationId} searchTrigger={searchTrigger} />
 
         </div>

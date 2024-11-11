@@ -5,19 +5,20 @@ const CardList = ({ searchQuery, locationId, searchTrigger }) => {
     const [cardData, setCardData] = useState([]);
 
     useEffect(() => {
-        if (searchQuery || searchTrigger || locationId) {
+        console.log("Location: ", locationId);
+        if (locationId) {
             const cameraTypeCode = 'M'; // hard-coded camera type. Subject to change, but most camera types fit into the 'M' category
             fetch(`http://localhost:5147/api/Get_ExpiationsForLocationId?locationId=${locationId}&cameraTypeCode=${cameraTypeCode}`)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
+                    console.log("Card Data:", data);
                     setCardData(data)
                 })
                 .catch(err => {
                     console.log(err);
                 });
         }
-    }, [searchQuery, locationId, searchTrigger])
+    }, [locationId, searchQuery])
 
     return (
         <div className="row">
