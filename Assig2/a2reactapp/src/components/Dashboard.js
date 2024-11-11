@@ -6,6 +6,7 @@ import CardList from './CardList';
 
 const Dashboard = () => {
     const [selectedSuburb, setSelectedSuburb] = useState('');
+    const [cameraType, setCameraType] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [offenceCodesOnly, setOffenceCodesOnly] = useState(false);
     const [searchTrigger, setSearchTrigger] = useState(false);
