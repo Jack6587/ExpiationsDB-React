@@ -1,11 +1,11 @@
 ﻿import { useEffect, useState } from 'react'
 import Card from './Card'
 
-const CardList = ({ searchQuery, offenceCodesOnly, selectedSuburb }) => {
+const CardList = ({ searchQuery, offenceCodesOnly, selectedSuburb, searchTrigger }) => {
     const [cardData, setCardData] = useState([]);
 
     useEffect(() => {
-        if (searchQuery) {
+        if (searchQuery || searchTrigger) {
             fetch(`http://localhost:5147/api/Get_SearchOffencesByDescription?searchTerm=${searchQuery}&offenceCodesOnly=${offenceCodesOnly}`)
                 .then(response => response.json())
                 .then(data => {
@@ -16,7 +16,7 @@ const CardList = ({ searchQuery, offenceCodesOnly, selectedSuburb }) => {
                     console.log(err);
                 });
         }
-    }, [searchQuery, offenceCodesOnly, selectedSuburb])
+    }, [searchQuery, offenceCodesOnly, selectedSuburb, searchTrigger])
 
     return (
         <div className="row">

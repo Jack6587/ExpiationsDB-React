@@ -1,4 +1,5 @@
 ﻿import { useEffect, useState } from 'react';
+import './style/DescriptionSearch.css';
 import Card from './Card';
 
 function DescriptionSearch({ searchQuery , offenceCodesOnly, onSearchChange, onSearchSubmit }) {
@@ -11,7 +12,7 @@ function DescriptionSearch({ searchQuery , offenceCodesOnly, onSearchChange, onS
         
         fetch(`${url}?searchTerm=${searchQuery}&offenceCodesOnly=${offenceCodesOnly}`)
             .then(response => response.json())
-            .then(data => setData(data))
+            .then(data => setDataSuggestions(data))
             .catch(err => {
                 console.log(err);
             });
@@ -32,19 +33,19 @@ function DescriptionSearch({ searchQuery , offenceCodesOnly, onSearchChange, onS
                     <input type="text" name="searchText" className="form-control" placeholder="Search by description" value={searchQuery} onChange={handleInputChange} />
                 </div>
                 <div className="col-3">
-                    <button type="submit" className="btn btn-outline-primary">
+                    <button type="submit" className="btn btn-outline-primary" onClick={() => onSearchSubmit(searchQuery)}>
                         Search
                     </button>
                 </div>
             </div>
 
-            {searchQuery && data.length > 0 && (
+            {searchQuery && dataSuggestions.length > 0 && (
                 <div className="col-12">
-                    <ul className="list-group mt-2">
-                        {data.map((offence) => (
+                    <ul className="list-group mt-2 dropdown-menu">
+                        {dataSuggestions.map((offence) => (
                         <li
                                 key={offence.offenceCode}
-                                className="list-group-item list-group-item-action"
+                                className="list-group-item list-group-item-action dropdown-item"
                                 onClick={() => handleOffenceSelect(offence.offenceCode)}
                         >
                             {offence.description}
