@@ -1,12 +1,13 @@
 ﻿import { useEffect, useState } from 'react'
 import Card from './Card'
 
-const CardList = ({ searchQuery, offenceCodesOnly, selectedSuburb, searchTrigger }) => {
+const CardList = ({ searchQuery, locationId, searchTrigger }) => {
     const [cardData, setCardData] = useState([]);
 
     useEffect(() => {
-        if (searchQuery || searchTrigger) {
-            fetch(`http://localhost:5147/api/Get_SearchOffencesByDescription?searchTerm=${searchQuery}&offenceCodesOnly=${offenceCodesOnly}`)
+        if (searchQuery || searchTrigger || locationId) {
+            const cameraTypeCode = 'M'; // hard-coded camera type. Subject to change, but most camera types fit into the 'M' category
+            fetch(`http://localhost:5147/api/Get_ExpiationsForLocationId?locationId=${locationId}&cameraTypeCode=${cameraTypeCode}`)
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
@@ -16,20 +17,19 @@ const CardList = ({ searchQuery, offenceCodesOnly, selectedSuburb, searchTrigger
                     console.log(err);
                 });
         }
-    }, [searchQuery, offenceCodesOnly, selectedSuburb, searchTrigger])
+    }, [searchQuery, locationId, searchTrigger])
 
     return (
         <div className="row">
             {cardData.map((obj) => (
                 <Card
-                    key={obj.offenceCode}
+                    key={obj.expId}
                     offenceCode={obj.offenceCode}
-                    description={obj.description}
-                    expiationFee={obj.expiationFee}
-                    totalFee={obj.totalFee}
-                    demeritPoints={obj.demeritPoints}
-                    sectionID={obj.sectionID}
-                    sectionCode={obj.sectionCode}
+                    totalFeeAmt={obj.totalFeeAmt}
+                    regState={obj.regState}
+                    vehicleSpeed={obj.vehicleSpeed}
+                    cameraTypeCode={obj.cameraTypeCode}
+                    issueDate={obj.issueDate}
                 />
             )
             )

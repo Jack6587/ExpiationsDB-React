@@ -2,11 +2,12 @@
 import { Link } from 'react-router-dom';
 import SuburbDropdown from './SuburbDropdown';
 import DescriptionSearch from './DescriptionSearch';
+import LocationSelect from './LocationSelect';
 import CardList from './CardList';
 
 const Dashboard = () => {
     const [selectedSuburb, setSelectedSuburb] = useState('');
-    const [cameraType, setCameraType] = useState([]);
+    const [selectedLocationId, setSelectedLocationId] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [offenceCodesOnly, setOffenceCodesOnly] = useState(false);
     const [searchTrigger, setSearchTrigger] = useState(false);
@@ -14,6 +15,7 @@ const Dashboard = () => {
     function handleSuburbChange(suburb) {
         setSelectedSuburb(suburb);
     }
+
 
     function handleSearchChange(query) {
         setSearchQuery(query);
@@ -29,8 +31,8 @@ const Dashboard = () => {
             <h2>Dashboard</h2>
             <SuburbDropdown searchQuery={searchQuery} onSuburbChange={handleSuburbChange} selectedSuburb={selectedSuburb} />
             <DescriptionSearch onSearchChange={handleSearchChange} searchQuery={searchQuery} onSearchSubmit={handleSearchSubmit} offenceCodesOnly={offenceCodesOnly} />
-
-            <CardList searchQuery={searchQuery} offenceCodesOnly={offenceCodesOnly} selectedSuburb={selectedSuburb} searchTrigger={searchTrigger} />
+            <LocationSelect onSearchChange={handleSearchChange} searchQuery={searchQuery} onSearchSubmit={handleSearchSubmit} />
+            <CardList searchQuery={searchQuery} selectedLocationId={selectedLocationId} searchTrigger={searchTrigger} />
 
         </div>
     );

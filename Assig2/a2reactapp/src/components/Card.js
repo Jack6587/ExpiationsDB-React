@@ -1,14 +1,14 @@
 ﻿
-function Card({ offenceCode, description, expiationFee, totalFee, demeritPoints, sectionID, sectionCode }) {
+function Card({ expId, offenceCode, totalFeeAmt, regState, vehicleSpeed, cameraTypeCode, issueDate }) {
     return (
         <div className="card col-4 mb-2" style={{ width: 18 + 'rem' }}>
             <div className="card-body">
-                <h5 className="card-title">{offenceCode} - {description}</h5>
-                <p className="card-text">Expiation Fee: {expiationFee}</p>
-                <p className="card-text">Total Fee: {totalFee}</p>
-                <p className="card-text">Demerit Points: {demeritPoints}</p>
-                <p className="card-text">Section ID: {sectionID}</p>
-                <p className="card-text">Section Code: {sectionCode}</p>
+                <h5 className="card-title">{expId} - {offenceCode}</h5>
+                <p className="card-text">Total Fee Amount: {totalFeeAmt}</p>
+                <p className="card-text">Registered State: {regState}</p>
+                <p className="card-text">Vehicle Speed: {vehicleSpeed}</p>
+                <p className="card-text">Camera Type Code: {cameraTypeCode}</p>
+                <p className="card-text">Issue Date: {issueDate}</p>
             </div>
         </div>
     )
