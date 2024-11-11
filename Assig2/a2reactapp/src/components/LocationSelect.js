@@ -15,11 +15,16 @@ const LocationSelect = ({ suburb, onLocationChange }) => {
             .catch(err => console.log(err));
     }, [suburb]);
 
+    const handleLocationChange = (e) => {
+        console.log("Selected location ID: ", e.target.value);
+        onLocationChange(e.target.value);
+    }
+
     return (
-        <select className="form-control" onChange={(e) => onLocationChange(e.target.value)}>
+        <select className="form-control" onChange={handleLocationChange}>
             <option value="">Select a specific location</option>
             {locations.map((location) => (
-                <option key={location.locationID} value={location.locationID}>
+                <option key={location.locationId} value={location.locationId}>
                     {location.roadName}
                 </option>
             ))}
