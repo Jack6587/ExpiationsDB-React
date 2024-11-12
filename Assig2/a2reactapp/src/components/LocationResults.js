@@ -1,41 +1,87 @@
 ﻿import React, { useState, useEffect } from 'react';
 
-const LocationResults = ({ suburb }) => {
+const LocationResults = ({ suburb, cameraType, searchQuery, searchTrigger }) => {
     const [locations, setLocations] = useState([]);
+    const [locationStats, setlocationStats] = useState({});
 
     useEffect(() => {
         console.log("Suburb selected: ", suburb);
-        if (!suburb) return;
+        if (!suburb || !searchTrigger || !cameraType) return;
         fetch(`http://localhost:5147/api/Get_ListCamerasInSuburb?suburb=${suburb}&cameraIdsOnly=false`)
             .then(response => response.json())
             .then(data => {
-                setLocations(data);
-                console.log("Locations: ", data);
+                const locationsData = data.filter(location => location.cameraTypeCode === cameraType);
+                setLocations(locationsData);
+
+                data.forEach(location => {
+                    expiationsForLocations(location.locationId);
+                });
             })
             .catch(err => console.log(err));
-    }, [suburb]);
+    }, [searchTrigger, suburb, cameraType, searchQuery,]);
+
+    const expiationsForLocations = (locationId) => {
+        let url = `http://localhost:5147/api/Get_ExpiationStatsForLocationId?locationId=${locationId}&cameraTypeCode=${cameraType}`;
+
+        if (searchQuery) {
+            url += `&offenceCodes=${searchQuery}`;
+        }
+
+        console.log(url);
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                setlocationStats(prev => ({
+                    ...prev,
+                    [locationId]: data
+                }));
+            })
+            .catch(err => console.log(err));
+    };
 
     return (
         <div>
-            <h3>Locations in {suburb}</h3>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>Location ID</th>
-                        <th>Road Name</th>
-                        <th>Camera Type</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {locations.map(location => (
-                        <tr key={location.locationId}>
-                            <td>{location.locationId}</td>
-                            <td>{location.roadName} {location.roadType}</td>
-                            <td>{location.cameraTypeCode}</td>
+            {searchTrigger && (
+                <h3>Locations in {suburb} for Camera Type {cameraType}</h3>
+            )}
+
+            {searchTrigger ? (
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th>Location ID</th>
+                            <th>Road Name</th>
+                            <th>Camera Type</th>
+                            <th>Expiation Count</th>
+                            <th>Average Fee per Day</th>
                         </tr>
-                    )) }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {locations.length === 0 ? (
+                            <tr>
+                                <td>No locations found for your search.</td>
+                            </tr>
+                        ) : ( 
+                            locations.map(location => {
+                                const stats = locationStats[location.locationId] || 0;
+                                return (
+                                    <tr key={location.locationId}>
+                                        <td>{location.locationId}</td>
+                                        <td>{location.roadName} {location.roadType}</td>
+                                        <td>{location.cameraTypeCode}</td>
+                                        <td>{stats.totalOffencesCount || 0}</td>
+                                        <td>{stats.avgFeePerDay || 0}</td>
+                                    </tr>
+                                );
+                            })
+                        )}
+                    </tbody>
+                </table>
+            ) : (
+                <p>Search to view data!</p>
+            ) }
+
         </div>
 
     )

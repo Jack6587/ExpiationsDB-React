@@ -1,5 +1,4 @@
 ﻿import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import SuburbDropdown from './SuburbDropdown';
 import DescriptionSearch from './DescriptionSearch';
 import CameraSelect from './CameraSelect';
@@ -40,7 +39,7 @@ const Dashboard = () => {
             <SuburbDropdown searchQuery={searchQuery} onSuburbChange={handleSuburbChange} selectedSuburb={selectedSuburb} />
             <CameraSelect suburb={selectedSuburb} onCameraTypeChange={handleCameraTypeChange} />
             <DescriptionSearch onSearchChange={handleSearchChange} searchQuery={searchQuery} onSearchSubmit={handleSearchSubmit} />
-            <LocationResults suburb={selectedSuburb} cameraType={selectedCameraType} searchQuery={searchQuery} />
+            <LocationResults suburb={selectedSuburb} cameraType={selectedCameraType} searchQuery={searchQuery} searchTrigger={searchTrigger} />
             {/*<CardList searchQuery={searchQuery} locationId={selectedLocationId} searchTrigger={searchTrigger} />*/}
 
         </div>
