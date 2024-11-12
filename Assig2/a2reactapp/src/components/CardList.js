@@ -10,7 +10,12 @@ const CardList = ({ searchQuery, locationId, searchTrigger }) => {
         if (locationId || searchQuery || searchTrigger) {
             const cameraTypeCode = 'M'; // hard-coded camera type. Subject to change, but most camera types fit into the 'M' category
             
-            const url = `http://localhost:5147/api/Get_ExpiationsForLocationId?locationId=${locationId}&cameraTypeCode=${cameraTypeCode}&offenceCodes=${searchQuery}`;
+            let url = `http://localhost:5147/api/Get_ExpiationsForLocationId?locationId=${locationId}&cameraTypeCode=${cameraTypeCode}`;
+
+            if (searchQuery) {
+                url += `&offenceCodes=${searchQuery}`;
+            }
+
             console.log("Fetching data from: ", url)
 
             fetch(url)

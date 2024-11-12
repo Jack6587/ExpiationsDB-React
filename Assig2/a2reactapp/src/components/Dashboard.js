@@ -2,12 +2,13 @@
 import { Link } from 'react-router-dom';
 import SuburbDropdown from './SuburbDropdown';
 import DescriptionSearch from './DescriptionSearch';
-import LocationSelect from './LocationSelect';
+import CameraSelect from './CameraSelect';
 import CardList from './CardList';
 
 const Dashboard = () => {
     const [selectedSuburb, setSelectedSuburb] = useState('');
     const [selectedLocationId, setSelectedLocationId] = useState('');
+    const [selectedCameraType, setSelectedCameraType] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [offenceCodesOnly, setOffenceCodesOnly] = useState(false);
     const [searchTrigger, setSearchTrigger] = useState(false);
@@ -20,23 +21,27 @@ const Dashboard = () => {
         setSearchQuery(query);
     }
 
-    function handleLocationChange(locationId) {
-        console.log("Location selected in Dashboard: ", locationId);
-        setSelectedLocationId(locationId);
-    }
+    //function handleLocationChange(locationId) {
+    //    console.log("Location selected in Dashboard: ", locationId);
+    //    setSelectedLocationId(locationId);
+    //}
 
     function handleSearchSubmit(query) {
         setSearchTrigger(true);
         setSearchQuery(query);
     }
 
+    function handleCameraTypeChange(cameraType) {
+        setSelectedCameraType(cameraType);
+    }
+
     return (
         <div className="dashboard">
             <h2>Dashboard</h2>
             <SuburbDropdown searchQuery={searchQuery} onSuburbChange={handleSuburbChange} selectedSuburb={selectedSuburb} />
-            <LocationSelect suburb={selectedSuburb} onLocationChange={handleLocationChange} />
+            <CameraSelect suburb={selectedSuburb} onCameraTypeChange={handleCameraTypeChange} />
             <DescriptionSearch onSearchChange={handleSearchChange} searchQuery={searchQuery} onSearchSubmit={handleSearchSubmit} offenceCodesOnly={offenceCodesOnly} />
-            <CardList searchQuery={searchQuery} locationId={selectedLocationId} searchTrigger={searchTrigger} />
+            {/*<CardList searchQuery={searchQuery} locationId={selectedLocationId} searchTrigger={searchTrigger} />*/}
 
         </div>
     );
