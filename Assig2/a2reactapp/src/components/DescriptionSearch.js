@@ -1,6 +1,5 @@
 ﻿import { useEffect, useState } from 'react';
 import './style/DescriptionSearch.css';
-import Card from './Card';
 
 function DescriptionSearch({ searchQuery, onSearchChange, onSearchSubmit }) {
     const [dataSuggestions, setDataSuggestions] = useState([]);

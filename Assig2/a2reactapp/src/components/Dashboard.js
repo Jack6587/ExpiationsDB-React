@@ -39,7 +39,6 @@ const Dashboard = () => {
             <CameraSelect suburb={selectedSuburb} onCameraTypeChange={handleCameraTypeChange} />
             <DescriptionSearch onSearchChange={handleSearchChange} searchQuery={searchQuery} onSearchSubmit={handleSearchSubmit} />
             <LocationResults suburb={selectedSuburb} cameraType={selectedCameraType} searchQuery={searchQuery} searchTrigger={searchTrigger} />
-            {/*<CardList searchQuery={searchQuery} locationId={selectedLocationId} searchTrigger={searchTrigger} />*/}
 
         </div>
     );

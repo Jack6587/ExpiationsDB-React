@@ -2,7 +2,7 @@
 import * as d3 from 'd3';
 
 const ExpiationGraph = ({ expiationDaysOfWeek }) => {
-    const svgRef = useRef();
+    const svgComponent = useRef();
 
     useEffect(() => {
         const data = Object.entries(expiationDaysOfWeek).map(([day, count]) => ({
@@ -14,7 +14,7 @@ const ExpiationGraph = ({ expiationDaysOfWeek }) => {
         const width = 500 - margin.left - margin.right;
         const height = 300 - margin.top - margin.bottom;
 
-        const svg = d3.select(svgRef.current)
+        const svg = d3.select(svgComponent.current)
             .attr("width", width)
             .attr("height", height)
             .append("g")
@@ -30,6 +30,23 @@ const ExpiationGraph = ({ expiationDaysOfWeek }) => {
             .nice()
             .range([height, 0]);
 
+        svg.append("g")
+            .selectAll(".tick")
+            .data(data)
+            .enter()
+            .append("g")
+            .attr("class", "x-axis")
+            .attr("transform", d => `translate(${x(d.day)},0)`)
+            .append("text")
+            .attr("y", height + 10)
+            .attr("x", 0)
+            .attr("text-anchor", "middle")
+            .text(d => d.day)
+            .style("font-size", "12px");
+
+        svg.append("g")
+            .call(d3.axisLeft(y));
+
         svg.selectAll("bar")
             .data(data)
             .enter()
@@ -40,7 +57,26 @@ const ExpiationGraph = ({ expiationDaysOfWeek }) => {
             .attr("width", x.bandwidth())
             .attr("height", d => height - y(d.count))
             .attr("fill", "#444444")
-    })
+
+        svg.append("text")
+            .attr("transform", `translate(${width / 2},${height + margin.bottom})`)
+            .style("text-anchor", "middle")
+            .text("Day of the Week");
+
+        svg.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 0 - margin.left)
+            .attr("x", 0 - height / 2)
+            .style("text-anchor", "middle")
+            .text("Number of Expiations");
+    }, [expiationDaysOfWeek]);
+
+    return (
+        <div>
+            <h4>Expiation Counts by Day of Week</h4>
+            <svg ref={svgComponent}></svg>
+        </div>
+    )
 }
 
 export default ExpiationGraph;
