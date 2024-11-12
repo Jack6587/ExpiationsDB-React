@@ -1,7 +1,36 @@
-﻿import React from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Report = () => {
+    const [locationData, setLocationData] = useState([]);
+    const locationIds = [23, 1709];
+    const tempLocationData = useRef([]);
+
+    useEffect(() => {
+        const fetchLocationData = (index) => {
+            if (index >= locationIds.length) {
+                setLocationData()
+            }
+        }
+
+            const locationId = locationIds[index];
+            fetch(`http://localhost:5147/api/Get_ExpiationStatsForLocationId?locationId=${locationId}&cameraTypeCode=M`)
+                .then(response => response.json())
+                .then(data => {
+                    setLocationData((prevData) => [
+                        ...prevData,
+                        { locationId, data }
+                    ]);
+
+                    fetchLocationData(index + 1);
+                })
+                .catch(err => console.log(err));
+        };
+
+        fetchLocationData(0);
+
+    }, []);
+
     return (
         <div className="dashboard">
             <h2>Report for Locations: Location 1 and Location 2</h2>
