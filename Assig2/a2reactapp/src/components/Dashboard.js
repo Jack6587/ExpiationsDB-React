@@ -10,7 +10,6 @@ const Dashboard = () => {
     const [selectedSuburb, setSelectedSuburb] = useState('');
     const [selectedCameraType, setSelectedCameraType] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
-    const [offenceCodesOnly, setOffenceCodesOnly] = useState(false);
     const [searchTrigger, setSearchTrigger] = useState(false);
 
     function handleSuburbChange(suburb) {
@@ -40,8 +39,8 @@ const Dashboard = () => {
             <h2>Dashboard</h2>
             <SuburbDropdown searchQuery={searchQuery} onSuburbChange={handleSuburbChange} selectedSuburb={selectedSuburb} />
             <CameraSelect suburb={selectedSuburb} onCameraTypeChange={handleCameraTypeChange} />
-            <DescriptionSearch onSearchChange={handleSearchChange} searchQuery={searchQuery} onSearchSubmit={handleSearchSubmit} offenceCodesOnly={offenceCodesOnly} />
-            <LocationResults suburb={selectedSuburb} />
+            <DescriptionSearch onSearchChange={handleSearchChange} searchQuery={searchQuery} onSearchSubmit={handleSearchSubmit} />
+            <LocationResults suburb={selectedSuburb} cameraType={selectedCameraType} searchQuery={searchQuery} />
             {/*<CardList searchQuery={searchQuery} locationId={selectedLocationId} searchTrigger={searchTrigger} />*/}
 
         </div>

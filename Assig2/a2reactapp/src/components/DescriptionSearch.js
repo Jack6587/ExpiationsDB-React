@@ -2,7 +2,7 @@
 import './style/DescriptionSearch.css';
 import Card from './Card';
 
-function DescriptionSearch({ searchQuery , offenceCodesOnly, onSearchChange, onSearchSubmit }) {
+function DescriptionSearch({ searchQuery, onSearchChange, onSearchSubmit }) {
     const [dataSuggestions, setDataSuggestions] = useState([]);
 
     const url = `http://localhost:5147/api/Get_SearchOffencesByDescription`;
@@ -10,13 +10,13 @@ function DescriptionSearch({ searchQuery , offenceCodesOnly, onSearchChange, onS
     useEffect(() => {
         if (!searchQuery) return;
         
-        fetch(`${url}?searchTerm=${searchQuery}&offenceCodesOnly=${offenceCodesOnly}`)
+        fetch(`${url}?searchTerm=${searchQuery}&offenceCodesOnly=false`)
             .then(response => response.json())
             .then(data => setDataSuggestions(data))
             .catch(err => {
                 console.log(err);
             });
-    }, [searchQuery, offenceCodesOnly]);
+    }, [searchQuery]);
 
     const handleOffenceSelect = (offenceCode) => {
         onSearchChange(offenceCode);
