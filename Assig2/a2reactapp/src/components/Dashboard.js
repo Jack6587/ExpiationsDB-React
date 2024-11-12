@@ -3,7 +3,6 @@ import SuburbDropdown from './SuburbDropdown';
 import DescriptionSearch from './DescriptionSearch';
 import CameraSelect from './CameraSelect';
 import LocationResults from './LocationResults';
-import CardList from './CardList';
 
 const Dashboard = () => {
     const [selectedSuburb, setSelectedSuburb] = useState('');

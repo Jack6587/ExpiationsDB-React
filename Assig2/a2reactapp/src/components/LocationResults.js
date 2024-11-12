@@ -54,7 +54,6 @@ const LocationResults = ({ suburb, cameraType, searchQuery, searchTrigger }) => 
                             <th>Road Name</th>
                             <th>Camera Type</th>
                             <th>Expiation Count</th>
-                            <th>Average Fee per Day</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,7 +70,6 @@ const LocationResults = ({ suburb, cameraType, searchQuery, searchTrigger }) => 
                                         <td>{location.roadName} {location.roadType}</td>
                                         <td>{location.cameraTypeCode}</td>
                                         <td>{stats.totalOffencesCount || 0}</td>
-                                        <td>{stats.avgFeePerDay || 0}</td>
                                     </tr>
                                 );
                             })
