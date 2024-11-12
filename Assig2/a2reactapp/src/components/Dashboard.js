@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import SuburbDropdown from './SuburbDropdown';
 import DescriptionSearch from './DescriptionSearch';
 import CameraSelect from './CameraSelect';
+import LocationResults from './LocationResults';
 import CardList from './CardList';
 
 const Dashboard = () => {
     const [selectedSuburb, setSelectedSuburb] = useState('');
-    const [selectedLocationId, setSelectedLocationId] = useState('');
     const [selectedCameraType, setSelectedCameraType] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [offenceCodesOnly, setOffenceCodesOnly] = useState(false);
@@ -41,6 +41,7 @@ const Dashboard = () => {
             <SuburbDropdown searchQuery={searchQuery} onSuburbChange={handleSuburbChange} selectedSuburb={selectedSuburb} />
             <CameraSelect suburb={selectedSuburb} onCameraTypeChange={handleCameraTypeChange} />
             <DescriptionSearch onSearchChange={handleSearchChange} searchQuery={searchQuery} onSearchSubmit={handleSearchSubmit} offenceCodesOnly={offenceCodesOnly} />
+            <LocationResults suburb={selectedSuburb} />
             {/*<CardList searchQuery={searchQuery} locationId={selectedLocationId} searchTrigger={searchTrigger} />*/}
 
         </div>
