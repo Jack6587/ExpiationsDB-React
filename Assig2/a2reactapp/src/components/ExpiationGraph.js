@@ -15,8 +15,8 @@ const ExpiationGraph = ({ expiationDaysOfWeek }) => {
         const height = 300 - margin.top - margin.bottom;
 
         const svg = d3.select(svgComponent.current)
-            .attr("width", width)
-            .attr("height", height)
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
             .append("g")
             .attr("transform", `translate(${margin.left},${margin.top})`);
 
@@ -31,44 +31,42 @@ const ExpiationGraph = ({ expiationDaysOfWeek }) => {
             .range([height, 0]);
 
         svg.append("g")
-            .selectAll(".tick")
-            .data(data)
-            .enter()
-            .append("g")
-            .attr("class", "x-axis")
-            .attr("transform", d => `translate(${x(d.day)},0)`)
-            .append("text")
-            .attr("y", height + 10)
-            .attr("x", 0)
-            .attr("text-anchor", "middle")
-            .text(d => d.day)
-            .style("font-size", "12px");
+            .attr("transform", d => `translate(0,${height})`)
+            .call(d3.axisBottom(x));
 
         svg.append("g")
             .call(d3.axisLeft(y));
 
-        svg.selectAll("bar")
+        svg.selectAll("rect")
             .data(data)
             .enter()
             .append("rect")
-            .attr("class", "bar")
             .attr("x", d => x(d.day))
-            .attr("y", d => y(d.count))
             .attr("width", x.bandwidth())
-            .attr("height", d => height - y(d.count))
+            .attr("y", height)
+            .attr("height", 0)
             .attr("fill", "#444444")
+            .transition()
+            .duration(500)
+            .ease(d3.easeBounceOut)
+            .attr("y", d => y(d.count))
+            .attr("height", d => height - y(d.count))
 
         svg.append("text")
             .attr("transform", `translate(${width / 2},${height + margin.bottom})`)
             .style("text-anchor", "middle")
-            .text("Day of the Week");
+            .text("Day of the Week")
+            .style("font-size", "14px")
+            .style("fill", "#333");
 
         svg.append("text")
             .attr("transform", "rotate(-90)")
-            .attr("y", 0 - margin.left)
+            .attr("y", 0 - margin.left + 10)
             .attr("x", 0 - height / 2)
             .style("text-anchor", "middle")
-            .text("Number of Expiations");
+            .text("Number of Expiations")
+            .style("font-size", "14px")
+            .style("fill", "#333");
     }, [expiationDaysOfWeek]);
 
     return (
