@@ -19,6 +19,27 @@ const ExpiationGraph = ({ expiationDaysOfWeek }) => {
             .attr("height", height)
             .append("g")
             .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        const x = d3.scaleBand()
+            .domain(data.map(d => d.day))
+            .range([0, width])
+            .padding(0.1);
+
+        const y = d3.scaleLinear()
+            .domain([0, d3.max(data, d => d.count)])
+            .nice()
+            .range([height, 0]);
+
+        svg.selectAll("bar")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("class", "bar")
+            .attr("x", d => x(d.day))
+            .attr("y", d => y(d.count))
+            .attr("width", x.bandwidth())
+            .attr("height", d => height - y(d.count))
+            .attr("fill", "#444444")
     })
 }
 
