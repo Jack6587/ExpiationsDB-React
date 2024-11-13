@@ -13,7 +13,7 @@ const Report = () => {
             <h2>MPDC Site Report</h2>
 
             {locations.map((location) => (
-                <LocationDetails key={location.locationId} locationId={location.locationId} cameraTypeCode={location.cameraTypeCode} />
+                <LocationDetails key={location.locationId} locationId={location.locationId} cameraTypeCode={location.cameraTypeCode} lat={location.lat} long={location.long} />
             )) }
         </div>
     )

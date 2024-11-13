@@ -1,7 +1,8 @@
 ﻿import React, { useState, useEffect } from 'react';
 import ExpiationGraph from './ExpiationGraph';
+import LocationMap from './LocationMap';
 
-const LocationDetails = ({ locationId, cameraTypeCode }) => {
+const LocationDetails = ({ locationId, cameraTypeCode, lat, long }) => {
     const [data, setData] = useState();
 
     useEffect(() => {
@@ -21,6 +22,7 @@ const LocationDetails = ({ locationId, cameraTypeCode }) => {
                 <p>Total Demerits: {data.totalDemerits}</p>
             </div>
 
+            <LocationMap lat={lat} long={long} locationId={locationId} />
             <ExpiationGraph expiationDaysOfWeek={data.expiationDaysOfWeek} />
         </div>
     );
