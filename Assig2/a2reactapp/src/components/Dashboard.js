@@ -11,7 +11,7 @@ const Dashboard = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchTrigger, setSearchTrigger] = useState(false);
     const [startTime, setStartTime] = useState(0); // default start time value
-    const [endTime, setEndTime] = useState(2147483647);
+    const [endTime, setEndTime] = useState(2147483647); // default end time value
 
     function handleSuburbChange(suburb) {
         setSelectedSuburb(suburb);

@@ -1,6 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 
-const LocationResults = ({ suburb, cameraType, searchQuery, searchTrigger }) => {
+const LocationResults = ({ suburb, cameraType, searchQuery, searchTrigger, startTime, endTime }) => {
     const [locations, setLocations] = useState([]);
     const [locationStats, setlocationStats] = useState({});
 
@@ -24,6 +24,10 @@ const LocationResults = ({ suburb, cameraType, searchQuery, searchTrigger }) => 
 
     const expiationsForLocations = (locationId) => {
         let url = `http://localhost:5147/api/Get_ExpiationStatsForLocationId?locationId=${locationId}&cameraTypeCode=${cameraType}`;
+
+        if (startTime && endTime) {
+            url += `&startTime=${startTime}&endTime=${endTime}`;
+        }
 
         if (searchQuery) {
             url += `&offenceCodes=${searchQuery}`;

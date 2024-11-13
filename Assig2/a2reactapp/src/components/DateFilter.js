@@ -1,4 +1,8 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
+
+const toUnixTime = (date) => {
+    return Math.floor(date.getTime() / 1000);
+}
 
 const DateFilter = ({ onDateChange }) => {
     const [startDate, setStartDate] = useState('');
@@ -6,11 +10,19 @@ const DateFilter = ({ onDateChange }) => {
 
     const handleStartDateChange = (e) => {
         setStartDate(e.target.value);
-    }
+    };
 
     const handleEndDateChange = (e) => {
         setEndDate(e.target.value);
-    }
+    };
+
+    useEffect(() => {
+        if (startDate && endDate) {
+            const startTime = toUnixTime(new Date(startDate));
+            const endTime = toUnixTime(new Date(endDate));
+            onDateChange(startTime, endTime);
+        }
+    }, [startDate, endDate, onDateChange])
 
     return (
         <div className="date-filter">
