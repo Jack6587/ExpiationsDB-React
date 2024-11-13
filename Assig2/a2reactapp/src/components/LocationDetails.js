@@ -2,24 +2,24 @@
 import ExpiationGraph from './ExpiationGraph';
 import LocationMap from './LocationMap';
 
-const LocationDetails = ({ locationId, cameraTypeCode, lat, long }) => {
+const LocationDetails = ({ locationId, locationName, offenceCode, cameraTypeCode, lat, long }) => {
     const [data, setData] = useState();
 
     useEffect(() => {
-        fetch(`http://localhost:5147/api/Get_ExpiationStatsForLocationId?locationId=${locationId}&cameraTypeCode=${cameraTypeCode}`)
+        fetch(`http://localhost:5147/api/Get_ExpiationStatsForLocationId?locationId=${locationId}&cameraTypeCode=${cameraTypeCode}&offenceCodes=${offenceCode}`)
             .then(response => response.json())
             .then(result => setData(result))
             .catch(err => console.log(err));
-    }, [locationId, cameraTypeCode]);
+    }, [locationId, offenceCode, cameraTypeCode]);
 
     if (!data) return <div>Loading...</div>;
 
     return (
         <div className="location-details">
-            <h3>Location {locationId} Details</h3>
+            <h3>Location {locationName}, ID {locationId}</h3>
             <div className="stats">
-                <p>Total Offences: {data.totalOffencesCount}</p>
-                <p>Total Demerits: {data.totalDemerits}</p>
+                <p><strong>Total Offences:</strong> {data.totalOffencesCount}</p>
+                <p><strong>Total Demerits:</strong> {data.totalDemerits}</p>
             </div>
 
             <LocationMap lat={lat} long={long} locationId={locationId} />
