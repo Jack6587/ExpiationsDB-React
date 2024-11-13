@@ -27,11 +27,14 @@ function DescriptionSearch({ searchQuery, onSearchChange, onSearchSubmit }) {
 
     return (
         <div className="descriptionSearch">
-            <div className="row justify-content-start mb-3">
-                <div className="col-3">
+            <div className="row mb-3">
+                <div className="col-12">
                     <input type="text" name="searchText" className="form-control" placeholder="Search by description" value={searchQuery} onChange={handleInputChange} />
                 </div>
-                <div className="col-3">
+
+            </div>
+            <div className="row mb-3">
+                <div className="col-6">
                     <button type="submit" className="btn btn-outline-primary" onClick={() => onSearchSubmit(searchQuery)}>
                         Search
                     </button>
