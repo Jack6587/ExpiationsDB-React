@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 const Report = () => {
     const locations = [
-        { locationId: 118, locationName: 'Grote Street/West Terrace', cameraTypeCode: 'I/section', offenceCode: 'A001', lat: -34.929246, long: 138.587860 },
-        { locationId: 65, locationName: 'Grote Street/West Terrace', cameraTypeCode: 'I/section', offenceCode: 'A001', lat: -34.936301, long: 138.588401 },
+        { locationId: 118, locationName: 'Grote Street/West Terrace', cameraTypeCode: 'I/section', offenceCode: 'A001', lat: -34.929246, lng: 138.587860 },
+        { locationId: 65, locationName: 'Grote Street/West Terrace', cameraTypeCode: 'I/section', offenceCode: 'A001', lat: -34.936301, lng: 138.588401 },
     ];
 
     return (
@@ -15,7 +15,7 @@ const Report = () => {
             <p>The search filters used to establish these results were Suburb, Camera Type, and Offence Code. The results displayed here only reflect expiations that occurred under Offence Code A001, which represents speeding between 1-9km over the speed limit. This best demonstrates cases where mobile phones may have been in use (cases of less "extreme" expiations).</p>
             <h5>Key Areas to Install MPDC Sites</h5>
             {locations.map((location) => (
-                <LocationDetails key={location.locationId} offenceCode={location.offenceCode} locationName={location.locationName} locationId={location.locationId} cameraTypeCode={location.cameraTypeCode} lat={location.lat} long={location.long} />
+                <LocationDetails key={location.locationId} offenceCode={location.offenceCode} locationName={location.locationName} locationId={location.locationId} cameraTypeCode={location.cameraTypeCode} lat={location.lat} lng={location.lng} />
             ))}
         </div>
     )

@@ -2,7 +2,7 @@
 import ExpiationGraph from './ExpiationGraph';
 import LocationMap from './LocationMap';
 
-const LocationDetails = ({ locationId, locationName, offenceCode, cameraTypeCode, lat, long }) => {
+const LocationDetails = ({ locationId, locationName, offenceCode, cameraTypeCode, lat, lng }) => {
     const [data, setData] = useState();
 
     useEffect(() => {
@@ -22,7 +22,7 @@ const LocationDetails = ({ locationId, locationName, offenceCode, cameraTypeCode
                 <p><strong>Total Demerits:</strong> {data.totalDemerits}</p>
             </div>
 
-            <LocationMap lat={lat} long={long} locationId={locationId} />
+            <LocationMap lat={lat} lng={lng} locationId={locationId} />
             <ExpiationGraph expiationDaysOfWeek={data.expiationDaysOfWeek} />
         </div>
     );
