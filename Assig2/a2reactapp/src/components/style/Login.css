@@ -1,0 +1,13 @@
+﻿.page-container {
+    background-color: #007bff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.card {
+    background-color: white;
+    padding: 30px;
+}

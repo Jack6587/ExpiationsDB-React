@@ -1,6 +1,7 @@
 ﻿import React, { useState } from 'react';
 import SHA256 from 'crypto-js/sha256';
 import { Link, useNavigate } from "react-router-dom";
+import './style/Login.css'
 
 const Register = ({ }) => {
     const [userName, setUsername] = useState('');
@@ -44,21 +45,24 @@ const Register = ({ }) => {
     }
 
     return (
-        <div className="card col-4 mb-2">
-            <h2>Register</h2>
-            <form method="post" onSubmit={onSubmit} className="row justify-content-start mb-3">
-                <div className="col-3">
-                    <input type="text" name="userName" className="form-control" placeholder="Username" />
-                </div>
-                <div className="col-3">
-                    <input type="text" name="password" className="form-control" placeholder="Password" />
-                </div>
-                <div className="col-3 text-left">
-                    <button type="submit" onClick={registerQuery}>Register</button>
-                    <Link className="nav-link" to="/Login">Login</Link>
-                </div>
-            </form>
+        <div className="page-container">
+            <div className="card">
+                <h2>Register</h2>
+                <form method="post" onSubmit={onSubmit} className="row justify-content-start mb-3">
+                    <div className="col-12 mb-3">
+                        <input type="text" name="userName" className="form-control" placeholder="Username" />
+                    </div>
+                    <div className="col-12 mb-3">
+                        <input type="text" name="password" className="form-control" placeholder="Password" />
+                    </div>
+                    <div className="col-12 text-left">
+                        <button type="submit" onClick={registerQuery}>Register</button>
+                        <Link className="nav-link" to="/Login">Log in</Link>
+                    </div>
+                </form>
         </div>
+        </div>
+
     )
 }
 

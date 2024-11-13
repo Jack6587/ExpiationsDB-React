@@ -57,7 +57,7 @@ const LocationResults = ({ suburb, cameraType, searchQuery, searchTrigger, start
     return (
         <div>
             {searchTrigger && (
-                <h4>Locations in {suburb} for Camera Type {cameraType}</h4>
+                <h4>Locations in <strong>{suburb}</strong> for Camera Type <strong>{cameraType}</strong></h4>
             )}
 
             {searchTrigger ? (
@@ -91,7 +91,7 @@ const LocationResults = ({ suburb, cameraType, searchQuery, searchTrigger, start
                     </tbody>
                 </table>
             ) : (
-                <p>Search to view data!</p>
+                <h5>Search to view data!</h5>
             ) }
 
         </div>
