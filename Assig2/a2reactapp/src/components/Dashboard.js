@@ -41,8 +41,15 @@ const Dashboard = () => {
             <SuburbDropdown searchQuery={searchQuery} onSuburbChange={handleSuburbChange} selectedSuburb={selectedSuburb} />
             <CameraSelect suburb={selectedSuburb} onCameraTypeChange={handleCameraTypeChange} />
             <DescriptionSearch onSearchChange={handleSearchChange} searchQuery={searchQuery} onSearchSubmit={handleSearchSubmit} />
-            <LocationResults suburb={selectedSuburb} cameraType={selectedCameraType} searchQuery={searchQuery} searchTrigger={searchTrigger} startTime={startTime} endTime={endTime} />
-
+            <DateFilter onDateChange={handleDateChange}></DateFilter>
+            <LocationResults
+                suburb={selectedSuburb}
+                cameraType={selectedCameraType}
+                searchQuery={searchQuery}
+                searchTrigger={searchTrigger}
+                startTime={startTime}
+                endTime={endTime}
+            />
         </div>
     );
 }
