@@ -57,7 +57,7 @@ const LocationResults = ({ suburb, cameraType, searchQuery, searchTrigger, start
     return (
         <div>
             {searchTrigger && (
-                <h3>Locations in {suburb} for Camera Type {cameraType}</h3>
+                <h4>Locations in {suburb} for Camera Type {cameraType}</h4>
             )}
 
             {searchTrigger ? (
