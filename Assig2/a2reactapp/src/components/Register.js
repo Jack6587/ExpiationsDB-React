@@ -25,6 +25,7 @@ const Register = ({ }) => {
             .then(data => {
                 console.log(data);
                 if (data) {
+                    alert("Register succeeded!");
                     navigate("/Login");
                 } else {
                     alert("Register failed");
@@ -38,9 +39,7 @@ const Register = ({ }) => {
     function registerQuery(evt) {
         const userName = document.querySelector('[name="userName"]').value;
         const pwd = document.querySelector('[name="password"]').value;
-        alert("Username: " + userName);
         setUsername(userName);
-        alert("Password: " + pwd);
         setPwd(pwd);
     }
 
@@ -56,7 +55,7 @@ const Register = ({ }) => {
                         <input type="text" name="password" className="form-control" placeholder="Password" />
                     </div>
                     <div className="col-12 text-left">
-                        <button type="submit" onClick={registerQuery}>Register</button>
+                        <button type="submit" onClick={registerQuery}>REGISTER</button>
                         <Link className="nav-link" to="/Login">Log in</Link>
                     </div>
                 </form>

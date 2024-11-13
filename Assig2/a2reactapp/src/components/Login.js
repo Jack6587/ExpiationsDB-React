@@ -23,6 +23,7 @@ const Login = ({ }) => {
             .then(data => {
                 console.log(data);
                 if (data) {
+                    alert("Login success!");
                     navigate("/Dashboard");
                 } else {
                     alert("Login failed");
@@ -36,9 +37,7 @@ const Login = ({ }) => {
     function loginQuery(evt) {
         const login = document.querySelector('[name="userName"]').value;
         const pwd = document.querySelector('[name="password"]').value;
-        alert("Login: " + login);
         setUsername(login);
-        alert("Password: " + pwd);
         setPwd(pwd);
     }
 
@@ -54,7 +53,7 @@ const Login = ({ }) => {
                         <input type="text" name="password" className="form-control" placeholder="Password" />
                     </div>
                     <div className="col-12 text-left">
-                        <button type="submit" onClick={loginQuery}>LOG IN</button>
+                        <button type="submit" onClick={loginQuery}>LOGIN</button>
                         <Link className="nav-link" to="/Register">Register</Link>
                     </div>
                 </form>
