@@ -22,7 +22,7 @@ const LocationDetails = ({ locationId, locationName, offenceCode, cameraTypeCode
                 <p><strong>Total Demerits:</strong> {data.totalDemerits}</p>
             </div>
 
-            <LocationMap lat={lat} lng={lng} locationId={locationId} />
+            <LocationMap lat={lat} lng={lng} locationName={locationName} />
             <ExpiationGraph expiationDaysOfWeek={data.expiationDaysOfWeek} />
         </div>
     );
