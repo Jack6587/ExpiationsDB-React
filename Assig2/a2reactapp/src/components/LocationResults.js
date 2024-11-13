@@ -22,6 +22,14 @@ const LocationResults = ({ suburb, cameraType, searchQuery, searchTrigger, start
             .catch(err => console.log(err));
     }, [searchTrigger, suburb, cameraType, searchQuery]);
 
+    useEffect(() => {
+        if (locations.length === 0) return;
+
+        locations.forEach(location => {
+            expiationsForLocations(location.locationId);
+        });
+    }, [startTime, endTime, locations]) // fetches if the start or end time changes
+
     const expiationsForLocations = (locationId) => {
         let url = `http://localhost:5147/api/Get_ExpiationStatsForLocationId?locationId=${locationId}&cameraTypeCode=${cameraType}`;
 

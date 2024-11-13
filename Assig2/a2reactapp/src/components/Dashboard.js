@@ -4,6 +4,7 @@ import DescriptionSearch from './DescriptionSearch';
 import CameraSelect from './CameraSelect';
 import LocationResults from './LocationResults';
 import DateFilter from './DateFilter';
+import './style/Dashboard.css'
 
 const Dashboard = () => {
     const [selectedSuburb, setSelectedSuburb] = useState('');
@@ -37,19 +38,24 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard">
-            <h2>Dashboard</h2>
-            <SuburbDropdown searchQuery={searchQuery} onSuburbChange={handleSuburbChange} selectedSuburb={selectedSuburb} />
-            <CameraSelect suburb={selectedSuburb} onCameraTypeChange={handleCameraTypeChange} />
-            <DescriptionSearch onSearchChange={handleSearchChange} searchQuery={searchQuery} onSearchSubmit={handleSearchSubmit} />
-            <DateFilter onDateChange={handleDateChange}></DateFilter>
-            <LocationResults
-                suburb={selectedSuburb}
-                cameraType={selectedCameraType}
-                searchQuery={searchQuery}
-                searchTrigger={searchTrigger}
-                startTime={startTime}
-                endTime={endTime}
-            />
+            <div className="sidebar">
+                <h2>Dashboard</h2>
+                <SuburbDropdown searchQuery={searchQuery} onSuburbChange={handleSuburbChange} selectedSuburb={selectedSuburb} />
+                <CameraSelect suburb={selectedSuburb} onCameraTypeChange={handleCameraTypeChange} />
+                <DateFilter onDateChange={handleDateChange}></DateFilter>
+                <DescriptionSearch onSearchChange={handleSearchChange} searchQuery={searchQuery} onSearchSubmit={handleSearchSubmit} />
+            </div>
+
+            <div className="main-content">
+                <LocationResults
+                    suburb={selectedSuburb}
+                    cameraType={selectedCameraType}
+                    searchQuery={searchQuery}
+                    searchTrigger={searchTrigger}
+                    startTime={startTime}
+                    endTime={endTime}
+                />
+            </div>
         </div>
     );
 }
