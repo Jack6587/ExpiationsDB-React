@@ -6,7 +6,9 @@ const LocationResults = ({ suburb, cameraType, searchQuery, searchTrigger }) => 
 
     useEffect(() => {
         console.log("Suburb selected: ", suburb);
-        if (!suburb || !searchTrigger || !cameraType) return;
+        if (!searchTrigger) return;
+        if (!suburb || !cameraType) return;
+
         fetch(`http://localhost:5147/api/Get_ListCamerasInSuburb?suburb=${suburb}&cameraIdsOnly=false`)
             .then(response => response.json())
             .then(data => {
@@ -18,7 +20,7 @@ const LocationResults = ({ suburb, cameraType, searchQuery, searchTrigger }) => 
                 });
             })
             .catch(err => console.log(err));
-    }, [searchTrigger, suburb, cameraType, searchQuery,]);
+    }, [searchTrigger, suburb, cameraType, searchQuery]);
 
     const expiationsForLocations = (locationId) => {
         let url = `http://localhost:5147/api/Get_ExpiationStatsForLocationId?locationId=${locationId}&cameraTypeCode=${cameraType}`;

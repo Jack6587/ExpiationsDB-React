@@ -18,11 +18,6 @@ const Dashboard = () => {
         setSearchQuery(query);
     }
 
-    //function handleLocationChange(locationId) {
-    //    console.log("Location selected in Dashboard: ", locationId);
-    //    setSelectedLocationId(locationId);
-    //}
-
     function handleSearchSubmit(query) {
         setSearchTrigger(true);
         setSearchQuery(query);

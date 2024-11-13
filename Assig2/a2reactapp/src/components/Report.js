@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Report = () => {
     const locations = [
         { locationId: 118, locationName: 'Grote Street/West Terrace', cameraTypeCode: 'I/section', offenceCode: 'A001', lat: -34.929246, lng: 138.587860 },
-        { locationId: 65, locationName: 'Grote Street/West Terrace', cameraTypeCode: 'I/section', offenceCode: 'A001', lat: -34.936301, lng: 138.588401 },
+        { locationId: 65, locationName: 'West Terrace/Hindley Street', cameraTypeCode: 'I/section', offenceCode: 'A001', lat: -34.923566, lng: 138.587405 },
     ];
 
     return (
