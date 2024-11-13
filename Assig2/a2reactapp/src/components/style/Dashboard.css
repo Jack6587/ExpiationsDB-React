@@ -12,7 +12,7 @@
     flex-direction: column;
     position: fixed;
     height: 100%;
-    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 100);
     top: 0;
     left: 0;
     z-index: 100;
@@ -90,4 +90,31 @@ button {
 
 button:hover {
     background-color: #0056b3;
+}
+
+.descriptionSearch .list-group {
+    position: absolute;
+    z-index: 200;
+    width: 90%;
+    max-width: 500px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 100);
+    border-radius: 4px;
+    margin-top: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.descriptionSearch .list-group-item {
+    white-space: normal;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+.report-container {
+    background-color: #007bff;
+    padding: 20px;
+    color: white;
+    border-radius: 8px;
+    margin-top: 20px;
 }

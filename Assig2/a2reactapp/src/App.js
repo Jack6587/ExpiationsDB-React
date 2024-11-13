@@ -1,8 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
 import SHA256 from 'crypto-js/sha256';
 import { Link, Outlet } from 'react-router-dom';
+import './components/style/Navbar.css';
 
 function App() {
   return (
@@ -15,8 +15,9 @@ function App() {
                   </button>
                   <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                       <div className="navbar-nav">
-                          <Link className="nav-link active" to="/Dashboard">Home</Link>
-                          <Link className="nav-link active" to="/Report">Report</Link>
+                          <Link className="nav-link" to="/Dashboard">Dashboard</Link>
+                          <Link className="nav-link" to="/Report">Report</Link>
+                          <Link className="nav-link" to="/Login">Log out</Link>
                       </div>
                   </div>
             </div>

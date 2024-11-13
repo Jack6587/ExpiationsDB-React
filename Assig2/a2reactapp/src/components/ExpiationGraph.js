@@ -71,7 +71,7 @@ const ExpiationGraph = ({ expiationDaysOfWeek }) => {
 
     return (
         <div>
-            <h4>Expiation Counts by Day of Week</h4>
+            <h3 class="mb-3 mt-3">Expiation Counts by Day of Week</h3>
             <svg ref={svgComponent}></svg>
         </div>
     )
