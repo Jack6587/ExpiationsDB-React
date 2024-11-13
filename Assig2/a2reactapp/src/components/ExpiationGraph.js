@@ -45,7 +45,7 @@ const ExpiationGraph = ({ expiationDaysOfWeek }) => {
             .attr("width", x.bandwidth())
             .attr("y", height)
             .attr("height", 0)
-            .attr("fill", d => `rgb(20, 20, ${Math.min(255, Math.max(0, 255 - d.count * 5))})`)
+            .attr("fill", "#003366")
             .transition()
             .duration(1000)
             .ease(d3.easeBounceOut)

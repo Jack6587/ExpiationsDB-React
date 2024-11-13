@@ -51,7 +51,10 @@
     flex-grow: 1;
     height: 100vh;
     overflow-y: auto;
+    margin-left: 250px;
     border-left: 2px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 100);
 }
 
 h4 {
